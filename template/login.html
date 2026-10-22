@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Access Terminal | XBODY EMS Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #06080d;
+            --bg-card: #0d121d;
+            --border-card: rgba(255, 255, 255, 0.08);
+            --accent-lime: #ccff00;
+            --accent-lime-hover: #b4e600;
+            --text-main: #f8fafc;
+            --text-muted: #8e9bb0;
+            --danger: #ef4444;
+            --font-head: 'Montserrat', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------------- NAVBAR ---------------- */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 0;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-symbol {
+            background: var(--accent-lime);
+            color: #080b11;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-head);
+            font-size: 22px;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-family: var(--font-head);
+            font-size: 19px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            line-height: 1.1;
+        }
+
+        .brand-sub {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            color: var(--accent-lime);
+            text-transform: uppercase;
+        }
+
+        .nav-back {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-back:hover {
+            color: var(--accent-lime);
+        }
+
+        /* ---------------- TERMINAL LAYOUT ---------------- */
+        .terminal-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 40px 0 80px;
+        }
+
+        .terminal-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.95fr;
+            gap: 64px;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Left Column Details */
+        .terminal-title {
+            font-family: var(--font-head);
+            font-size: 44px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .terminal-desc {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 36px;
+            max-width: 480px;
+        }
+
+        .features-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-bottom: 40px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 15px;
+            color: #d1d5db;
+        }
+
+        .feature-icon {
+            width: 18px;
+            height: 18px;
+            stroke: var(--accent-lime);
+            stroke-width: 2.2;
+            fill: none;
+            flex-shrink: 0;
+        }
+
+        /* Demo Access Box */
+        .demo-box {
+            background: #090e17;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px 24px;
+            max-width: 500px;
+        }
+
+        .demo-tag {
+            font-size: 11px;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--accent-lime);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .demo-line {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .demo-line:last-child {
+            margin-bottom: 0;
+        }
+
+        .demo-line:hover {
+            color: #f8fafc;
+        }
+
+        /* Right Column Form Card */
+        .sign-in-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            padding: 44px 40px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .card-title {
+            font-family: var(--font-head);
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            background: #070a10;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 14px;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-lime);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--accent-lime);
+            color: #080b11;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: var(--font-head);
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-bottom: 24px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-submit:hover {
+            background: var(--accent-lime-hover);
+            transform: translateY(-1px);
+        }
+
+        .signup-link {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .signup-link span {
+            color: var(--accent-lime);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .signup-link span:hover {
+            text-decoration: underline;
+        }
+
+        .alert-banner {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid var(--danger);
+            color: #fca5a5;
+            padding: 12px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+            .terminal-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            .terminal-title {
+                font-size: 34px;
+            }
+            .sign-in-card {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="container">
+        <nav class="navbar">
+            <div class="brand-logo">
+                <div class="brand-symbol">X</div>
+                <div class="brand-text">
+                    <span class="brand-name">XBODY</span>
+                    <span class="brand-sub">EMS STUDIO &bull; LEEDS</span>
+                </div>
+            </div>
+            <a href="/" class="nav-back">
+                &larr; Back to Studio
+            </a>
+        </nav>
+    </header>
+
+    <div class="container terminal-wrapper">
+        <div class="terminal-grid">
+            <!-- Left Information Column -->
+            <div class="terminal-info">
+                <h1 class="terminal-title">
+                    MEMBER ACCESS<br>TERMINAL
+                </h1>
+                <p class="terminal-desc">
+                    Sign in to book sessions, manage your schedule, and track your biometric progress at our Leeds studio.
+                </p>
+
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <svg class="feature-icon" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        <span>Live slot availability at our Leeds studio</span>
+                    </li>
+                    <li class="feature-item">
+                        <svg class="feature-icon" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        <span>Instant booking confirmation &mdash; no phone calls</span>
+                    </li>
+                    <li class="feature-item">
+                        <svg class="feature-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                        <span>Bank-grade encrypted, password-protected account</span>
+                    </li>
+                </ul>
+
+                <!-- Demo Credentials Box -->
+                <div class="demo-box">
+                    <span class="demo-tag">DEMO ACCESS (CLICK TO AUTO-FILL)</span>
+                    <div class="demo-line" onclick="fillDemo('member@xbody.co.uk', 'PulseMember2026!')">
+                        member@xbody.co.uk / PulseMember2026!
+                    </div>
+                    <div class="demo-line" onclick="fillDemo('admin@xbody.co.uk', 'PulseAdmin2026!')">
+                        admin@xbody.co.uk / PulseAdmin2026!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Login Form Column -->
+            <div class="sign-in-card">
+                <h2 class="card-title">SIGN IN</h2>
+                <p class="card-subtitle">Welcome back to the studio.</p>
+
+                <div id="loginAlert" class="alert-banner"></div>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label" for="loginEmail">EMAIL</label>
+                        <input type="email" id="loginEmail" class="form-input" placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="loginPassword">PASSWORD</label>
+                        <input type="password" id="loginPassword" class="form-input" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" required>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="loginBtn">ACCESS TERMINAL</button>
+
+                    <p class="signup-link">
+                        New to XBody Studio? <span>Create your member profile</span>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function fillDemo(email, pass) {
+            document.getElementById('loginEmail').value = email;
+            document.getElementById('loginPassword').value = pass;
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const alertBox = document.getElementById('loginAlert');
+            const btn = document.getElementById('loginBtn');
+            alertBox.style.display = 'none';
+            btn.textContent = 'AUTHENTICATING...';
+
+            const payload = {
+                email: document.getElementById('loginEmail').value.trim(),
+                password: document.getElementById('loginPassword').value
+            };
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+
+                if (!res.ok) {
+                    alertBox.textContent = data.message || 'Authentication error. Please check your credentials.';
+                    alertBox.style.display = 'block';
+                    btn.textContent = 'ACCESS TERMINAL';
+                } else {
+                    window.location.href = data.redirect || '/dashboard';
+                }
+            } catch (err) {
+                alertBox.textContent = 'Server connection error. Please try again.';
+                alertBox.style.display = 'block';
+                btn.textContent = 'ACCESS TERMINAL';
+            }
+        });
+    </script>
+</body>
+</html>

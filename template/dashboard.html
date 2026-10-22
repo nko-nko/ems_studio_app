@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Portal | XBODY EMS Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body { background: #06080d; color: #fff; font-family: 'Space Grotesk', sans-serif; padding: 40px 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 30px; }
+        .badge { background: #ccff00; color: #000; padding: 6px 14px; border-radius: 6px; font-weight: 800; font-size: 12px; }
+        .card { background: #0d121d; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px; margin-bottom: 20px; }
+        .btn-logout { background: transparent; border: 1px solid #ef4444; color: #ef4444; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; text-decoration: none; font-size: 13px; }
+        .btn-logout:hover { background: #ef4444; color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1 style="font-family: 'Montserrat', sans-serif; font-size: 26px;">STUDIO ACCESS GRANTED</h1>
+                <p style="color: #8e9bb0; font-size: 14px;">Logged in as: <strong>{{ session.get('user_email') }}</strong> ({{ session.get('user_role') }})</p>
+            </div>
+            <div>
+                <a href="/logout" class="btn-logout">Sign Out</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 style="margin-bottom: 12px; color: #ccff00;">Active Membership: Precision EMS</h3>
+            <p style="color: #94a3b8; font-size: 14px; line-height: 1.6;">
+                Location: Leeds &mdash; 52 Back Avenue.<br>
+                Trainer Assigned: Certified Master Trainer (Nicoleta Badoi)<br>
+                Status: Verified &amp; Medical Clearance Cleared.
+            </p>
+        </div>
+
+        <a href="/" style="color: #ccff00; font-size: 14px; text-decoration: none;">&larr; Back to Main Studio Page</a>
+    </div>
+</body>
+</html>
