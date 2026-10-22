@@ -1,1 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XBODY EMS Studio | Leeds</title>
+    <!-- Modern High-Performance Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #080b11;
+            --bg-surface: #101522;
+            --bg-card: #151b2b;
+            --border-card: rgba(255, 255, 255, 0.08);
+            --accent-lime: #ccff00;
+            --accent-lime-hover: #b3e600;
+            --accent-red: #ef4444;
+            --text-main: #f8fafc;
+            --text-muted: #8e9bb0;
+            --font-head: 'Montserrat', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------------- NAVBAR & REBRANDED LOGO ---------------- */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 0;
+            background: rgba(8, 11, 17, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .brand-symbol {
+            background: var(--accent-lime);
+            color: #080b11;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-head);
+            font-size: 22px;
+            font-weight: 900;
+            line-height: 1;
+            box-shadow: 0 0 15px rgba(204, 255, 0, 0.3);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-family: var(--font-head);
+            font-size: 19px;
+            font-weight: 900;
+            letter-spacing: 2.5px;
+            color: #ffffff;
+            line-height: 1.1;
+        }
+
+        .brand-sub {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            color: var(--accent-lime);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+            font-size: 13px;
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #cbd5e1;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-lime);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-login {
+            font-size: 14px;
+            font-weight: 600;
+            color: #cbd5e1;
+            transition: color 0.2s;
+        }
+
+        .nav-login:hover { color: #fff; }
+
+        .btn-lime {
+            background: var(--accent-lime);
+            color: #000;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 13px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-lime svg {
+            width: 15px;
+            height: 15px;
+            fill: #000;
+            stroke: #000;
+        }
+
+        .btn-lime:hover {
+            background: var(--accent-lime-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 14px 26px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline:hover {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* ---------------- PILLS & LABELS ---------------- */
+        .pill-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(204, 255, 0, 0.08);
+            border: 1px solid rgba(204, 255, 0, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: var(--accent-lime);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .pill-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent-lime);
+        }
+
+        .section-label {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--accent-lime);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-heading {
+            font-family: var(--font-head);
+            font-size: 42px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.1;
+            margin-bottom: 48px;
+        }
+
+        /* ---------------- HERO SECTION ---------------- */
+        .hero {
+            padding: 80px 0 100px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-family: var(--font-head);
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1.05;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero-title .highlight-outline {
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--accent-lime);
+            display: block;
+        }
+
+        .hero-desc {
+            font-size: 17px;
+            color: var(--text-muted);
+            max-width: 520px;
+            margin-bottom: 36px;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .hero-image-box {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-card);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+            background: #000;
+        }
+
+        .hero-image-box img {
+            width: 100%;
+            height: 520px;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.92);
+        }
+
+        /* ---------------- PROGRAMS SECTION ---------------- */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 120px;
+        }
+
+        .program-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(204, 255, 0, 0.3);
+        }
+
+        .program-img-wrapper {
+            position: relative;
+            height: 340px;
+            overflow: hidden;
+            background: #0a0e17;
+        }
+
+        .program-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge-card {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(204, 255, 0, 0.4);
+            color: var(--accent-lime);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .program-content {
+            padding: 28px 32px 36px;
+        }
+
+        .program-title {
+            font-family: var(--font-head);
+            font-size: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .program-subtitle {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--accent-lime);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .program-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ---------------- METHOD 4-CARD GRID ---------------- */
+        .method-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 120px;
+        }
+
+        .method-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            padding: 36px 32px;
+            transition: all 0.3s ease;
+        }
+
+        .method-card:hover {
+            background: var(--bg-card);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .method-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(204, 255, 0, 0.08);
+            border: 1px solid rgba(204, 255, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .method-icon-box svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--accent-lime);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .method-title {
+            font-family: var(--font-head);
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .method-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ---------------- PRICING SECTION ---------------- */
+        .pricing-section {
+            margin-bottom: 120px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .pricing-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            padding: 44px 34px 38px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .pricing-card.featured {
+            border: 1.5px solid var(--accent-lime);
+            box-shadow: 0 0 35px rgba(204, 255, 0, 0.12);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-lime);
+            color: #080b11;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+        }
+
+        .pricing-title {
+            font-family: var(--font-head);
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin-bottom: 24px;
+        }
+
+        .price-wrapper {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .price-amount {
+            font-family: var(--font-head);
+            font-size: 48px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1;
+        }
+
+        .price-period {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .pricing-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 36px;
+            flex-grow: 1;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.45;
+        }
+
+        .pricing-features li svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--accent-lime);
+            stroke-width: 2.4;
+            fill: none;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .pricing-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            font-family: var(--font-head);
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: transparent;
+            color: #ffffff;
+        }
+
+        .pricing-btn:hover {
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .pricing-btn.featured-btn {
+            background: var(--accent-lime);
+            color: #080b11;
+            border: none;
+        }
+
+        .pricing-btn.featured-btn:hover {
+            background: var(--accent-lime-hover);
+            transform: translateY(-1px);
+        }
+
+        /* ---------------- STUDIO LEEDS SECTION ---------------- */
+        .studio-layout {
+            display: grid;
+            grid-template-columns: 1.3fr 0.9fr;
+            gap: 28px;
+            margin-bottom: 120px;
+        }
+
+        .studio-main-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            height: 440px;
+        }
+
+        .studio-main-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.75);
+        }
+
+        .studio-main-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 32px;
+            background: linear-gradient(to top, rgba(8, 11, 17, 0.95), transparent);
+        }
+
+        .studio-meta-tag {
+            color: var(--accent-lime);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .studio-meta-tag svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--accent-lime);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .studio-meta-desc {
+            color: #cbd5e1;
+            font-size: 14px;
+            max-width: 500px;
+        }
+
+        .studio-side-col {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .trainer-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+        }
+
+        .trainer-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85);
+        }
+
+        .trainer-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: var(--accent-lime);
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .visit-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            padding: 28px 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .visit-header {
+            color: var(--accent-lime);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .visit-header svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--accent-lime);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .visit-text {
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ---------------- MODAL / BOOKING DRAWER ---------------- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            max-width: 580px;
+            width: 100%;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-muted);
+            stroke-width: 2;
+            fill: none;
+            transition: stroke 0.2s;
+        }
+
+        .modal-close:hover svg {
+            stroke: #ffffff;
+        }
+
+        .modal-title {
+            font-family: var(--font-head);
+            font-size: 24px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .modal-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            background: #080b11;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-lime);
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 14px;
+            padding: 12px;
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 8px;
+        }
+
+        .checkbox-container input {
+            margin-top: 3px;
+            accent-color: var(--accent-red);
+        }
+
+        .checkbox-container label {
+            font-size: 12px;
+            color: #fca5a5;
+            line-height: 1.4;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: 500;
+        }
+
+        .alert-box {
+            padding: 14px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid var(--accent-red);
+            color: #fca5a5;
+            display: block;
+        }
+
+        .alert-success {
+            background: rgba(204, 255, 0, 0.15);
+            border: 1px solid var(--accent-lime);
+            color: var(--accent-lime);
+            display: block;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 992px) {
+            .hero { grid-template-columns: 1fr; padding-top: 40px; }
+            .hero-title { font-size: 48px; }
+            .hero-image-box img { height: 380px; }
+            .programs-grid, .method-grid, .studio-layout { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="container">
+        <nav class="navbar">
+            <div class="brand-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="brand-symbol">X</div>
+                <div class="brand-text">
+                    <span class="brand-name">XBODY</span>
+                    <span class="brand-sub">EMS STUDIO &bull; LEEDS</span>
+                </div>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#method">Method</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#studio">Studio</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="/login" class="nav-login">Member Login</a>
+                <button class="btn-lime" onclick="openBookingModal('Trial Session (£45)')">
+                    <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    Book Session
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- 1. Hero Section -->
+        <section class="hero">
+            <div class="hero-text-col">
+                <div class="pill-tag">
+                    <span class="pill-dot"></span> XBODY EMS &bull; LEEDS
+                </div>
+                <h1 class="hero-title">
+                    TWENTY MINUTES.<br>
+                    TOTAL BODY.<br>
+                    <span class="highlight-outline">ZERO COMPROMISE.</span>
+                </h1>
+                <p class="hero-desc">
+                    Electro Muscle Stimulation triggers 50,000 deep muscle contractions in a single 20-minute session — the equivalent of 90 minutes in the gym, with zero joint impact. One-on-one with a certified Master Trainer.
+                </p>
+                <div class="hero-cta">
+                    <button class="btn-lime" onclick="openBookingModal('Initial Scan & Trial (£45)')">
+                        BOOK INITIAL SCAN
+                        <svg viewBox="0 0 24 24" style="stroke: #000; stroke-width: 2; fill: none; width: 14px; height: 14px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                    <a href="#programs" class="btn-outline">
+                        EXPLORE PROGRAMS
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-image-col">
+                <div class="hero-image-box">
+                    <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=900&q=80" alt="XBody EMS Studio Trainer">
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Programs Section -->
+        <section id="programs">
+            <span class="section-label">// OUTCOMES</span>
+            <h2 class="section-heading">HIGH OUTCOMES. ZERO COMPROMISE.</h2>
+
+            <div class="programs-grid">
+                <!-- Program 1 -->
+                <div class="program-card">
+                    <div class="program-img-wrapper">
+                        <span class="badge-card">MOST POPULAR</span>
+                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80" alt="X-Hypertrophy">
+                    </div>
+                    <div class="program-content">
+                        <h3 class="program-title">X-HYPERTROPHY // POWER</h3>
+                        <p class="program-subtitle">LEAN MUSCLE &amp; DEEP FIBRE RECRUITMENT</p>
+                        <p class="program-text">
+                            Targeted full-body electrical impulses activating deep fast-twitch muscle fibers with zero heavy axial load or joint strain.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Program 2 -->
+                <div class="program-card">
+                    <div class="program-img-wrapper">
+                        <span class="badge-card">FAT LOSS</span>
+                        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80" alt="X-Metabolic">
+                    </div>
+                    <div class="program-content">
+                        <h3 class="program-title">X-METABOLIC // SCULPT</h3>
+                        <p class="program-subtitle">CARDIOVASCULAR &amp; BODY COMPOSITION</p>
+                        <p class="program-text">
+                            Dynamic high-metabolic conditioning protocols designed to elevate post-exercise oxygen consumption (EPOC) for an extended afterburn.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Method Section -->
+        <section id="method">
+            <span class="section-label">// THE METHOD</span>
+            <h2 class="section-heading">WHY 20 MINUTES BEATS 90</h2>
+
+            <div class="method-grid">
+                <div class="method-card">
+                    <div class="method-icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
+                    <h3 class="method-title">BIO-ELECTRIC IMPULSE</h3>
+                    <p class="method-desc">
+                        Low-frequency current mimics your brain's own electrical signals, contracting 350+ muscles simultaneously — including deep postural stabilizers no barbell reaches.
+                    </p>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                    </div>
+                    <h3 class="method-title">JOINT-SAFE BY DESIGN</h3>
+                    <p class="method-desc">
+                        No external weights or joint loads. Zero compression on knees, spine, and shoulders. Certified and ideal for injury prevention and rehabilitation.
+                    </p>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M6 5v14M18 5v14M2 9v6M22 9v6M6 12h12"/></svg>
+                    </div>
+                    <h3 class="method-title">1-ON-1 ONLY</h3>
+                    <p class="method-desc">
+                        Every session is strictly private, led by a certified XBody Master Trainer who individually calibrates impulse depth across each muscle channel.
+                    </p>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-icon-box">
+                        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    </div>
+                    <h3 class="method-title">48-HOUR AFTERBURN</h3>
+                    <p class="method-desc">
+                        Elevated metabolic output continues for up to two days post-workout. Progress is measured and tracked with monthly medical-grade InBody scans.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Protocol Pricing Section -->
+        <section id="pricing" class="pricing-section">
+            <span class="section-label">// INVESTMENT</span>
+            <h2 class="section-heading">PROTOCOL PRICING</h2>
+
+            <div class="pricing-grid">
+                <!-- Tier 1: Trial -->
+                <div class="pricing-card">
+                    <h3 class="pricing-title">FIRST IMPULSE TRIAL</h3>
+                    <div class="price-wrapper">
+                        <span class="price-amount">£45</span>
+                        <span class="price-period">ONE-TIME</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>1x 20-min 1-on-1 EMS Session</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Full XBody suit &amp; tech fitting</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Body composition &amp; bio-scan</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Post-workout recovery protein shake</span>
+                        </li>
+                    </ul>
+                    <button class="pricing-btn" onclick="openBookingModal('First Impulse Trial (£45)')">
+                        BOOK TRIAL SESSION
+                    </button>
+                </div>
+
+                <!-- Tier 2: Electro Black (Featured) -->
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">MOST CHOSEN</div>
+                    <h3 class="pricing-title">ELECTRO BLACK MEMBERSHIP</h3>
+                    <div class="price-wrapper">
+                        <span class="price-amount">£189</span>
+                        <span class="price-period">PER MONTH (4 SESSIONS)</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>4x 1-on-1 Personal EMS Sessions</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Dedicated Master Trainer</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Personal suit garment included</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Free booking reschedule up to 12h</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Monthly InBody biometric tracking</span>
+                        </li>
+                    </ul>
+                    <button class="pricing-btn featured-btn" onclick="openBookingModal('Electro Black Membership (£189/mo)')">
+                        JOIN MEMBERSHIP
+                    </button>
+                </div>
+
+                <!-- Tier 3: Unlimited X-Pass -->
+                <div class="pricing-card">
+                    <h3 class="pricing-title">UNLIMITED X-PASS</h3>
+                    <div class="price-wrapper">
+                        <span class="price-amount">£349</span>
+                        <span class="price-period">PER MONTH (8 SESSIONS MAX)</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Up to 8 sessions/mo (2x per week)</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Priority peak slot booking access</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Complimentary cryo-recovery boots</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Private shower suite access</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Guest pass included monthly</span>
+                        </li>
+                    </ul>
+                    <button class="pricing-btn" onclick="openBookingModal('Unlimited X-Pass (£349/mo)')">
+                        START UNLIMITED
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Studio Section -->
+        <section id="studio">
+            <span class="section-label">// THE STUDIO</span>
+            <h2 class="section-heading">IN THE HEART OF LEEDS</h2>
+
+            <div class="studio-layout">
+                <div class="studio-main-card">
+                    <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=80" alt="Leeds Studio">
+                    <div class="studio-main-overlay">
+                        <div class="studio-meta-tag">
+                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            LEEDS &mdash; 52 BACK AVENUE
+                        </div>
+                        <p class="studio-meta-desc">Our Leeds home. Private EMS suite, full body composition scanning, and luxury private shower facilities.</p>
+                    </div>
+                </div>
+
+                <div class="studio-side-col">
+                    <div class="trainer-card">
+                        <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&w=800&q=80" alt="Certified Master Trainer">
+                        <div class="trainer-badge">CERTIFIED MASTER TRAINERS</div>
+                    </div>
+                    <div class="visit-card">
+                        <div class="visit-header">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            VISIT US
+                        </div>
+                        <p class="visit-text">
+                            Open Monday to Saturday, 07:00 &ndash; 20:00.<br>
+                            Direct Booking Line: 0749 077 4217<br>
+                            Email: contact@xbody-leeds.co.uk
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Booking Modal Dialog -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeBookingModal()" aria-label="Close modal">
+                <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <h3 class="modal-title">Book Session &amp; Protocol</h3>
+            <p class="modal-subtitle" id="modalSubtitle">Experience 20-minute precision EMS training at our Leeds studio.</p>
+
+            <div id="modalAlert" class="alert-box"></div>
+
+            <form id="emsBookingForm">
+                <div class="form-group">
+                    <label for="custName">Full Name</label>
+                    <input type="text" id="custName" class="form-control" placeholder="e.g. Nicoleta Badoi" required>
+                </div>
+                <div class="form-group">
+                    <label for="custEmail">Email Address</label>
+                    <input type="email" id="custEmail" class="form-control" placeholder="name@domain.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="custPhone">Mobile Number</label>
+                    <input type="tel" id="custPhone" class="form-control" placeholder="07490 000000" required>
+                </div>
+                <div class="form-group">
+                    <label for="custDate">Preferred Date</label>
+                    <input type="date" id="custDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="custSlot">Preferred Time Slot</label>
+                    <select id="custSlot" class="form-control" required>
+                        <option value="09:00 - 09:45">09:00 - 09:45 (Morning)</option>
+                        <option value="11:00 - 11:45">11:00 - 11:45 (Mid-Day)</option>
+                        <option value="14:00 - 14:45">14:00 - 14:45 (Afternoon)</option>
+                        <option value="16:30 - 17:15">16:30 - 17:15 (Late Afternoon)</option>
+                        <option value="18:30 - 19:15">18:30 - 19:15 (Evening Peak)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="custGoal">Selected Protocol / Focus</label>
+                    <select id="custGoal" class="form-control">
+                        <option value="First Impulse Trial (£45)">First Impulse Trial (£45)</option>
+                        <option value="Electro Black Membership (£189/mo)">Electro Black Membership (£189/mo)</option>
+                        <option value="Unlimited X-Pass (£349/mo)">Unlimited X-Pass (£349/mo)</option>
+                        <option value="X-Hypertrophy // Lean Muscle">X-Hypertrophy // Lean Muscle</option>
+                        <option value="X-Metabolic // Fat Loss">X-Metabolic // Fat Loss &amp; Tone</option>
+                        <option value="Postural &amp; Back Care">Postural Alignment &amp; Back Care</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-container">
+                    <input type="checkbox" id="custContra">
+                    <label for="custContra">
+                        Medical Screening: Check here if you have any contraindications (cardiac pacemakers, pregnancy, epilepsy, or acute circulatory disorders).
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-lime" style="width: 100%; margin-top: 24px; justify-content: center;">
+                    Submit &amp; Confirm Appointment
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Frontend Interactive Script Logic -->
+    <script>
+        const modal = document.getElementById('bookingModal');
+        const alertBox = document.getElementById('modalAlert');
+        const dateInput = document.getElementById('custDate');
+        const goalSelect = document.getElementById('custGoal');
+        const modalSub = document.getElementById('modalSubtitle');
+
+        dateInput.min = new Date().toISOString().split('T')[0];
+
+        function openBookingModal(planName) {
+            alertBox.style.display = 'none';
+            alertBox.className = 'alert-box';
+            
+            if (planName) {
+                modalSub.textContent = `Selected Protocol: ${planName}`;
+                for (let i = 0; i < goalSelect.options.length; i++) {
+                    if (goalSelect.options[i].value === planName) {
+                        goalSelect.selectedIndex = i;
+                        break;
+                    }
+                }
+            } else {
+                modalSub.textContent = "Experience 20-minute precision EMS training at our Leeds studio.";
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeBookingModal() {
+            modal.classList.remove('active');
+        }
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) closeBookingModal();
+        });
+
+        document.getElementById('emsBookingForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            alertBox.style.display = 'none';
+            alertBox.className = 'alert-box';
+
+            const payload = {
+                full_name: document.getElementById('custName').value.trim(),
+                email: document.getElementById('custEmail').value.trim(),
+                phone: document.getElementById('custPhone').value.trim(),
+                preferred_date: document.getElementById('custDate').value,
+                preferred_slot: document.getElementById('custSlot').value,
+                fitness_goal: document.getElementById('custGoal').value,
+                has_contraindications: document.getElementById('custContra').checked
+            };
+
+            try {
+                const response = await fetch('/api/bookings', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    alertBox.className = 'alert-box alert-error';
+                    alertBox.textContent = result.errors ? result.errors.join(' ') : (result.message || 'Error processing request.');
+                    alertBox.style.display = 'block';
+                } else {
+                    alertBox.className = 'alert-box alert-success';
+                    alertBox.textContent = 'Session confirmed! Your initial scan slot is reserved.';
+                    alertBox.style.display = 'block';
+                    document.getElementById('emsBookingForm').reset();
+                    setTimeout(() => {
+                        closeBookingModal();
+                    }, 2500);
+                }
+            } catch (err) {
+                alertBox.className = 'alert-box alert-error';
+                alertBox.textContent = 'Unable to connect to the studio scheduling server.';
+                alertBox.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
